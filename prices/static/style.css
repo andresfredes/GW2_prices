@@ -1,0 +1,21 @@
+@font-face {
+    font-family: gw2;
+    src: url("font/GWTwoFont.ttf");
+}
+
+.gw-background {
+    background-image: url("https://wiki.guildwars2.com/images/d/df/GW2Logo_new.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+}
+
+.content {
+    background-color: rgba(230, 230, 230, 0.9)
+}
+
+.gw-font {
+    font-family: gw2;
+}

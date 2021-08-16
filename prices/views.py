@@ -1,4 +1,5 @@
 from flask import render_template
+from prices import app
 
 @app.route('/')
 @app.route('/index')
