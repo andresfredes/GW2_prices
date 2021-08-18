@@ -1,5 +1,5 @@
 #!/bin/bash
 
-export FLASK_APP=prices.py
+export FLASK_APP=prices
 export FLASK_ENV=testing
-flask run
+pytest .

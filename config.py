@@ -10,3 +10,5 @@ class DevelopmentConfig(Config):
 
 class TestingConfig(Config):
     TESTING = True
+    BCRYPT_LOG_ROUNDS = 4
+    WTF_CSRF_ENABLED = False
