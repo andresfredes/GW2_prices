@@ -1,7 +1,7 @@
 from flask import render_template
-from prices import app
+from prices.site import site
 
-@app.route('/')
-@app.route('/index')
+@site.route('/')
+@site.route('/index')
 def index():
     return render_template('index.html')
