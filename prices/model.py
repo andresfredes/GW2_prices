@@ -1,18 +1,9 @@
-from sqlalchemy import Column, create_engine
+from sqlalchemy import Column
 from sqlalchemy.orm import relationship
 from sqlalchemy.dialects.mysql import INTEGER, TEXT, VARCHAR, BOOLEAN, DATETIME
-from sqlalchemy.ext.declarative import declarative_base
+from prices import db
 
-# in-memory db used during development and testing. Final form will be:
-# "mariadb+mariadbconnector://<username>:<password>@<host>:<port>/<dbname>"
-engine = create_engine(
-    "mariadb+mariadbconnector:///:memory:",
-    echo=True,
-    future=True
-)
-Base = declarative_base()
-
-class Recipe(Base):
+class Recipe(db.Model):
     __tablename__ = "recipes"
     id = Column("id", INTEGER, primary_key=True, nullable=False)
     output_qty = Column("output_qty", INTEGER, nullable=False)
@@ -53,11 +44,8 @@ class Recipe(Base):
         "craft_scribe", BOOLEAN, default=False, nullable=False
     )
 
-    ingredients = relationship("Item", back_populates="recipes")
-    favourites = relationship("Favourite", back_populates="recipes")
 
-
-class Item(Base):
+class Item(db.Model):
     __tablename__ = "items"
     id = Column("id", INTEGER, primary_key=True, nullable=False)
     name = Column("name", VARCHAR, nullable=False)
@@ -79,11 +67,8 @@ class Item(Base):
     karma_sell_qty = Column("karma_sell_qty", INTEGER)
     bound = Column("bound", BOOLEAN, default=False, nullable=False)
 
-    recipes = relationship("Recipe", back_populates="ingredients")
-    price_histories = relationship("Price_History", back_populates="items")
-    favourites = relationship("Favourite", back_populates="items")
 
-class Price_History(Base):
+class Price_History(db.Model):
     __tablename__ = "price_history"
     id = Column("id", INTEGER, primary_key=True, nullable=False)
     item_id = Column("item_id", INTEGER, nullable=False)
@@ -91,9 +76,8 @@ class Price_History(Base):
     price_buy = Column("price_buy", INTEGER, nullable=False)
     price_sell = Column("price_sell", INTEGER, nullable=False)
 
-    items = relationship("Item", back_populates="price_histories")
 
-class Favourite(Base):
+class Favourite(db.Model):
     __tablename__ = "faves"
     uid = Column(
         "uid", INTEGER, primary_key=True, nullable=False, autoincrement=True
@@ -102,6 +86,3 @@ class Favourite(Base):
     item_id = Column("item_id", INTEGER)
     recipe_id = Column("recipe_id", INTEGER)
 
-    items = relationship("Item", back_populates="favourites")
-    recipes = relationship("Recipe", back_populates="favourites")
-    
