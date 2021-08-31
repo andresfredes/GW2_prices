@@ -1,5 +1,5 @@
 import pytest
-from prices import create_app
+from prices import create_app, db
 
 @pytest.fixture(scope='module')
 def app():
@@ -12,7 +12,8 @@ def test_client():
     testing_client = app.test_client()
     context = app.app_context()
     context.push()
-
-    yield testing_client
-
+    with context:
+        db.create_all()
+        yield testing_client
+        db.drop_all()
     context.pop()

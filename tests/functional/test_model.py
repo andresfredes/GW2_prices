@@ -1,5 +1,5 @@
-from prices import model
+from prices import db
 
-def test_model_create(test_client):
+def test_db_create(test_client):
     with test_client:
-        pass
+        assert db.engine.table_names()
