@@ -3,9 +3,23 @@ from sqlalchemy.orm import relationship
 from sqlalchemy.dialects.mysql import INTEGER, TEXT, VARCHAR, BOOLEAN, DATETIME
 from prices import db
 
+
 class Recipe(db.Model):
     __tablename__ = "recipes"
     id = Column("id", INTEGER, primary_key=True, nullable=False)
+
+    def __init__(self, id):
+        self.id = id
+
+    def __str__(self):
+        return f"Recipe object with values: id = {self.id}"
+    
+    def __repr__(self):
+        return f"Recipe(id={self.id})"
+
+"""
+Switching to TDD workflow and scaling back to start simple
+
     output_qty = Column("output_qty", INTEGER, nullable=False)
     output_item = Column("output_item", INTEGER, nullable=False)
     ingredient_1_qty = Column("ingredient_1_qty", INTEGER, nullable=False)
@@ -86,3 +100,4 @@ class Favourite(db.Model):
     item_id = Column("item_id", INTEGER)
     recipe_id = Column("recipe_id", INTEGER)
 
+"""

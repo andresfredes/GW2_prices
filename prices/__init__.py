@@ -1,5 +1,5 @@
 from flask import Flask
-from sqlalchemy import SQLAlchemy
+from flask_sqlalchemy import SQLAlchemy
 from flask_bootstrap import Bootstrap
 import config
 from prices.site import site

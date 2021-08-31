@@ -2,6 +2,11 @@ import pytest
 from prices import create_app
 
 @pytest.fixture(scope='module')
+def app():
+    app = create_app()
+    return app
+
+@pytest.fixture(scope='module')
 def test_client():
     app = create_app()
     testing_client = app.test_client()
@@ -11,4 +16,3 @@ def test_client():
     yield testing_client
 
     context.pop()
-
