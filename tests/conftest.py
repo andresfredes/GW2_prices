@@ -38,3 +38,14 @@ def populate(db):
         db.session.add(TEST_RECIPES)
         db.session.add(TEST_PRICE_HISTORIES)
     """
+
+# from functools import wraps
+# """ Wraps the __init__ method of a class that only requires it for populating
+# test database. True data will be added by different program."""
+# def auto_init(init):
+#     @wraps(init)
+#     def wrapper(self, **kwargs):
+#         for k, v in kwargs.items():
+#             setattr(self, k, v)
+#         return init(self, **kwargs)
+#     return wrapper

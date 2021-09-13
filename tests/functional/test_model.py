@@ -7,6 +7,6 @@ def test_db_exists(db):
 @pytest.mark.parametrize("table", [
     "items", "faves", "recipes", "price_history"
 ])
-def test_db_create(db):
+def test_db_create(db, table):
     inspector = inspect(db.engine)
     assert inspector.has_table(table)
