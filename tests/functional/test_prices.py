@@ -1,3 +1,6 @@
+def test_app_exists(app):
+    assert app
+
 def test_response(test_client):
     with test_client:
         response = test_client.get('/')
